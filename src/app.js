@@ -6,4 +6,8 @@
  * started on the 11/05/2020
  */
 
-console.warn("this is a test!");
+import React from "react";
+import ReactDOM from "react-dom";
+import RootComponent from "./components/root";
+
+ReactDOM.render(<RootComponent />, document.querySelector("#app"));
