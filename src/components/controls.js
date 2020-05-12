@@ -10,8 +10,18 @@ import React from "react";
 
 import {Button} from "react-bootstrap";
 
+import PlayButton from "./play-button";
+
 const Controls = props => {
-    const {incTimerValue, decTimerValue, resetTimerValue} = props;
+    const {
+        running,
+        startTimer,
+        incTimerValue,
+        decTimerValue,
+        resetTimerValue,
+        changeTimerKey,
+    } = props;
+
     return (
         <div className={"btn-group-vertical"}>
             <Button
@@ -21,12 +31,7 @@ const Controls = props => {
                 defaultValue={"+"}
                 onClick={incTimerValue}
             />
-            <Button
-                variant={"outline-success"}
-                as={"input"}
-                type={"button"}
-                defaultValue={"Play"}
-            />
+            <PlayButton running={running} startTimer={startTimer} />
             <Button
                 variant={"outline-warning"}
                 as={"input"}
@@ -40,6 +45,13 @@ const Controls = props => {
                 type={"button"}
                 defaultValue={"-"}
                 onClick={decTimerValue}
+            />
+            <Button
+                variant={"secondary"}
+                as={"input"}
+                type={"button"}
+                defaultValue={"mode"}
+                onClick={changeTimerKey}
             />
         </div>
     );
