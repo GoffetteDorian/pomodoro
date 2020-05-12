@@ -10,12 +10,11 @@ import React from "react";
 
 import {Button} from "react-bootstrap";
 
-import PlayButton from "./play-button";
-
 const Controls = props => {
     const {
         running,
         startTimer,
+        pauseTimer,
         incTimerValue,
         decTimerValue,
         resetTimerValue,
@@ -31,7 +30,11 @@ const Controls = props => {
                 defaultValue={"+"}
                 onClick={incTimerValue}
             />
-            <PlayButton running={running} startTimer={startTimer} />
+            <Button
+                variant={!running ? "outline-success" : "outline-warning"}
+                onClick={!running ? startTimer : pauseTimer}>
+                {!running ? "Play" : "Pause"}
+            </Button>
             <Button
                 variant={"outline-warning"}
                 as={"input"}
