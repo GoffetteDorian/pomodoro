@@ -13,6 +13,7 @@ import {Container, Row, Col, Card} from "react-bootstrap";
 import Timer from "./timer";
 import Controls from "./controls";
 
+let timerInterval = null;
 const defaultIncrementValue = 60;
 const defaultTimerValue = {
     work: 1800,
@@ -22,13 +23,34 @@ const defaultTimerValue = {
 const Pomodoro = () => {
     const [timerValue, setTimerValue] = useState(defaultTimerValue);
     const [timerKey, setTimerKey] = useState("work");
+    const [running, isRunning] = useState(false);
 
     useEffect(() => {
         console.log(timerValue);
-    }, [timerValue]);
+
+        const countdown = () => {
+            setTimerValue(timer => {
+                const alteredTimer = {...timer};
+                alteredTimer[timerKey] -= 1;
+                return alteredTimer;
+            });
+            console.log(timerInterval);
+        };
+        if (running && timerInterval === null) {
+            timerInterval = setInterval(countdown, 1000);
+        } else if (!running) {
+            clearInterval(timerInterval);
+            console.log(timerInterval);
+            timerInterval = null;
+        }
+    }, [timerValue, running]);
 
     const startTimer = () => {
-        console.log("start");
+        isRunning(true);
+    };
+
+    const pauseTimer = () => {
+        isRunning(false);
     };
 
     const incTimerValue = () => {
@@ -72,8 +94,9 @@ const Pomodoro = () => {
                         </Col>
                         <Col>
                             <Controls
-                                running={false}
+                                running={running}
                                 startTimer={startTimer}
+                                pauseTimer={pauseTimer}
                                 incTimerValue={incTimerValue}
                                 decTimerValue={decTimerValue}
                                 resetTimerValue={resetTimerValue}
