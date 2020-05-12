@@ -6,31 +6,55 @@
  * started on the 11/05/2020
  */
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import {Container, Row, Col, Card} from "react-bootstrap";
 
 import Timer from "./timer";
 import Controls from "./controls";
 
+const defaultIncrementValue = 60;
 const defaultTimerValue = {
     work: 1800,
     break: 600,
 };
 
 const Pomodoro = () => {
-    const [timerValue, setTimerValue] = useState(defaultTimerValue.work);
+    const [timerValue, setTimerValue] = useState(defaultTimerValue);
+    const [timerKey, setTimerKey] = useState("work");
+
+    useEffect(() => {
+        console.log(timerValue);
+    }, [timerValue]);
+
+    const startTimer = () => {
+        console.log("start");
+    };
 
     const incTimerValue = () => {
-        setTimerValue(timerValue + 60);
+        setTimerValue(timer => {
+            const alteredTimer = {...timer};
+            // const key = Object.keys(alteredTimer)[timerKey];
+            alteredTimer[timerKey] += defaultIncrementValue;
+            return alteredTimer;
+        });
     };
 
     const decTimerValue = () => {
-        setTimerValue(timerValue - 60);
+        setTimerValue(timer => {
+            const alteredTimer = {...timer};
+            // const key = Object.keys(alteredTimer)[timerKey];
+            alteredTimer[timerKey] -= defaultIncrementValue;
+            return alteredTimer;
+        });
     };
 
     const resetTimerValue = () => {
-        setTimerValue(defaultTimerValue.work);
+        setTimerValue(defaultTimerValue);
+    };
+
+    const changeTimerKey = () => {
+        setTimerKey(timerKey === "work" ? "break" : "work");
     };
 
     return (
@@ -44,13 +68,16 @@ const Pomodoro = () => {
                 <Card.Body>
                     <Row>
                         <Col>
-                            <Timer timerValue={timerValue} />
+                            <Timer timerValue={timerValue[timerKey]} />
                         </Col>
                         <Col>
                             <Controls
+                                running={false}
+                                startTimer={startTimer}
                                 incTimerValue={incTimerValue}
                                 decTimerValue={decTimerValue}
                                 resetTimerValue={resetTimerValue}
+                                changeTimerKey={changeTimerKey}
                             />
                         </Col>
                     </Row>

@@ -8,6 +8,9 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import RootComponent from "./components/root";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-ReactDOM.render(<RootComponent />, document.querySelector("#app"));
+// import RootComponent from "./components/root";
+import Pomodoro from "./components/pomodoro";
+
+ReactDOM.render(<Pomodoro />, document.querySelector("#app"));
