@@ -17,9 +17,11 @@ let timerInterval = null;
 let disableControls = false;
 const defaultIncrementValue = 60;
 const defaultTimerValue = {
-    work: 10,
+    work: 1800,
     break: 600,
 };
+
+let savedTimerSettings = defaultTimerValue;
 
 const Pomodoro = () => {
     const [timerValue, setTimerValue] = useState(defaultTimerValue);
@@ -28,6 +30,7 @@ const Pomodoro = () => {
 
     const startTimer = () => {
         disableControls = true;
+        savedTimerSettings = timerValue;
         isRunning(true);
     };
 
@@ -37,25 +40,21 @@ const Pomodoro = () => {
     };
 
     useEffect(() => {
-        console.log(timerValue);
-
         const countdown = () => {
             setTimerValue(timer => {
                 const alteredTimer = {...timer};
                 if (alteredTimer[timerKey] === 0) {
                     pauseTimer();
-                    return defaultTimerValue;
+                    return savedTimerSettings;
                 }
                 alteredTimer[timerKey] -= 1;
                 return alteredTimer;
             });
-            console.log(timerInterval);
         };
         if (running && timerInterval === null) {
             timerInterval = setInterval(countdown, 1000);
         } else if (!running) {
             clearInterval(timerInterval);
-            console.log(timerInterval);
             timerInterval = null;
         }
     }, [timerValue, running]);
@@ -83,7 +82,7 @@ const Pomodoro = () => {
     };
 
     const resetTimerValue = () => {
-        setTimerValue(defaultTimerValue);
+        setTimerValue(savedTimerSettings);
     };
 
     const changeTimerKey = () => {
@@ -101,7 +100,10 @@ const Pomodoro = () => {
                 <Card.Body>
                     <Row>
                         <Col>
-                            <Timer timerValue={timerValue[timerKey]} />
+                            <Timer
+                                timerValue={timerValue[timerKey]}
+                                fullValue={savedTimerSettings[timerKey]}
+                            />
                         </Col>
                         <Col>
                             <Controls
