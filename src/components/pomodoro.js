@@ -14,9 +14,10 @@ import Timer from "./timer";
 import Controls from "./controls";
 
 let timerInterval = null;
+let disableControls = false;
 const defaultIncrementValue = 60;
 const defaultTimerValue = {
-    work: 1800,
+    work: 10,
     break: 600,
 };
 
@@ -25,12 +26,26 @@ const Pomodoro = () => {
     const [timerKey, setTimerKey] = useState("work");
     const [running, isRunning] = useState(false);
 
+    const startTimer = () => {
+        disableControls = true;
+        isRunning(true);
+    };
+
+    const pauseTimer = () => {
+        disableControls = false;
+        isRunning(false);
+    };
+
     useEffect(() => {
         console.log(timerValue);
 
         const countdown = () => {
             setTimerValue(timer => {
                 const alteredTimer = {...timer};
+                if (alteredTimer[timerKey] === 0) {
+                    pauseTimer();
+                    return defaultTimerValue;
+                }
                 alteredTimer[timerKey] -= 1;
                 return alteredTimer;
             });
@@ -45,18 +60,12 @@ const Pomodoro = () => {
         }
     }, [timerValue, running]);
 
-    const startTimer = () => {
-        isRunning(true);
-    };
-
-    const pauseTimer = () => {
-        isRunning(false);
-    };
-
     const incTimerValue = () => {
         setTimerValue(timer => {
             const alteredTimer = {...timer};
-            // const key = Object.keys(alteredTimer)[timerKey];
+            if (alteredTimer[timerKey] + defaultIncrementValue >= 86400) {
+                alteredTimer[timerKey] = 0;
+            }
             alteredTimer[timerKey] += defaultIncrementValue;
             return alteredTimer;
         });
@@ -65,7 +74,9 @@ const Pomodoro = () => {
     const decTimerValue = () => {
         setTimerValue(timer => {
             const alteredTimer = {...timer};
-            // const key = Object.keys(alteredTimer)[timerKey];
+            if (alteredTimer[timerKey] - defaultIncrementValue <= 0) {
+                alteredTimer[timerKey] = 86400;
+            }
             alteredTimer[timerKey] -= defaultIncrementValue;
             return alteredTimer;
         });
@@ -101,6 +112,7 @@ const Pomodoro = () => {
                                 decTimerValue={decTimerValue}
                                 resetTimerValue={resetTimerValue}
                                 changeTimerKey={changeTimerKey}
+                                disableControls={disableControls}
                             />
                         </Col>
                     </Row>
