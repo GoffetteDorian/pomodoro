@@ -19,6 +19,7 @@ const Controls = props => {
         decTimerValue,
         resetTimerValue,
         changeTimerKey,
+        disableControls,
     } = props;
 
     return (
@@ -29,6 +30,7 @@ const Controls = props => {
                 type={"button"}
                 defaultValue={"+"}
                 onClick={incTimerValue}
+                disabled={disableControls}
             />
             <Button
                 variant={!running ? "outline-success" : "outline-warning"}
@@ -48,6 +50,7 @@ const Controls = props => {
                 type={"button"}
                 defaultValue={"-"}
                 onClick={decTimerValue}
+                disabled={disableControls}
             />
             <Button
                 variant={"secondary"}
