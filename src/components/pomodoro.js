@@ -8,7 +8,7 @@
 
 import React, {useState, useEffect} from "react";
 
-import {Container, Row, Col, Card} from "react-bootstrap";
+import {Container, Row, Card, Modal, Button} from "react-bootstrap";
 
 import Timer from "./timer";
 import Controls from "./controls";
@@ -27,6 +27,7 @@ const Pomodoro = () => {
     const [timerValue, setTimerValue] = useState(defaultTimerValue);
     const [timerKey, setTimerKey] = useState("work");
     const [running, isRunning] = useState(false);
+    const [modal, setModal] = useState(false);
 
     const startTimer = () => {
         disableControls = true;
@@ -45,6 +46,7 @@ const Pomodoro = () => {
                 const alteredTimer = {...timer};
                 if (alteredTimer[timerKey] === 0) {
                     pauseTimer();
+                    setModal(true);
                     return savedTimerSettings;
                 }
                 alteredTimer[timerKey] -= 1;
@@ -89,40 +91,65 @@ const Pomodoro = () => {
         setTimerKey(timerKey === "work" ? "break" : "work");
     };
 
+    const onClose = () => {
+        setModal(false);
+        changeTimerKey();
+    };
+
     return (
         <Container className={"my-3"}>
-            {/* <Row>
-                <Col> */}
-            <Card>
-                <Card.Header>
-                    <Card.Title>{"Timer"}</Card.Title>
+            <Modal show={modal} onClose={onClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        {timerKey === "work"
+                            ? "Work is done :)"
+                            : "Break is done :)"}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {timerKey === "work"
+                        ? "Take a break!"
+                        : "Get back to work!"}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant={"success"} onClick={onClose}>
+                        {"Close"}
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Card
+                style={{
+                    background: "#284169",
+                    color: "#284169",
+                    border: "none",
+                }}>
+                <Card.Header style={{background: "#4068A8", width: "100%"}}>
+                    <Card.Title>
+                        {timerKey === "work" ? "Work" : "Break"}
+                    </Card.Title>
                 </Card.Header>
                 <Card.Body>
+                    <Row style={{display: "flex", justifyContent: "center"}}>
+                        <Timer
+                            timerValue={timerValue[timerKey]}
+                            fullValue={savedTimerSettings[timerKey]}
+                        />
+                    </Row>
                     <Row>
-                        <Col>
-                            <Timer
-                                timerValue={timerValue[timerKey]}
-                                fullValue={savedTimerSettings[timerKey]}
-                            />
-                        </Col>
-                        <Col>
-                            <Controls
-                                running={running}
-                                startTimer={startTimer}
-                                pauseTimer={pauseTimer}
-                                incTimerValue={incTimerValue}
-                                decTimerValue={decTimerValue}
-                                resetTimerValue={resetTimerValue}
-                                changeTimerKey={changeTimerKey}
-                                disableControls={disableControls}
-                            />
-                        </Col>
+                        <Controls
+                            running={running}
+                            startTimer={startTimer}
+                            pauseTimer={pauseTimer}
+                            incTimerValue={incTimerValue}
+                            decTimerValue={decTimerValue}
+                            resetTimerValue={resetTimerValue}
+                            changeTimerKey={changeTimerKey}
+                            disableControls={disableControls}
+                        />
                     </Row>
                 </Card.Body>
-                {/* <Card.Footer></Card.Footer> */}
             </Card>
-            {/* </Col>
-            </Row>*/}
         </Container>
     );
 };

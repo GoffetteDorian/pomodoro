@@ -23,9 +23,26 @@ const Controls = props => {
     } = props;
 
     return (
-        <div className={"btn-group-vertical"}>
+        <div
+            style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                zIndex: 10,
+                width: "100%",
+                height: "100%",
+                textAlign: "center",
+            }}>
             <Button
-                variant={"success"}
+                style={{
+                    position: "absolute",
+                    top: "50%",
+                    right: "15%",
+                    width: "80px",
+                    background: "#4068A8",
+                    border: "none",
+                    color: "#284169",
+                }}
                 as={"input"}
                 type={"button"}
                 defaultValue={"+"}
@@ -33,19 +50,43 @@ const Controls = props => {
                 disabled={disableControls}
             />
             <Button
-                variant={!running ? "outline-success" : "outline-warning"}
+                style={{
+                    position: "absolute",
+                    bottom: "20%",
+                    left: "47%",
+                    width: "68px",
+                    border: "solid 2px #4068A8",
+                    color: "#4068A8",
+                }}
+                variant={"outline"}
                 onClick={!running ? startTimer : pauseTimer}>
-                {!running ? "Play" : "Pause"}
+                {!running ? <span>{"►"}</span> : <span>{"▌▌"}</span>}
             </Button>
             <Button
-                variant={"outline-warning"}
+                style={{
+                    position: "absolute",
+                    top: "20%",
+                    left: "22.5%",
+                    width: "80px",
+                    background: "#4068A8",
+                    border: "none",
+                    color: "#284169",
+                }}
                 as={"input"}
                 type={"button"}
                 defaultValue={"Reset"}
                 onClick={resetTimerValue}
             />
             <Button
-                variant={"danger"}
+                style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "15%",
+                    width: "80px",
+                    background: "#4068A8",
+                    border: "none",
+                    color: "#284169",
+                }}
                 as={"input"}
                 type={"button"}
                 defaultValue={"-"}
@@ -53,11 +94,20 @@ const Controls = props => {
                 disabled={disableControls}
             />
             <Button
-                variant={"secondary"}
+                style={{
+                    position: "absolute",
+                    top: "20%",
+                    right: "22.5%",
+                    width: "80px",
+                    background: "#4068A8",
+                    border: "none",
+                    color: "#284169",
+                }}
                 as={"input"}
                 type={"button"}
-                defaultValue={"mode"}
+                defaultValue={"Mode"}
                 onClick={changeTimerKey}
+                disabled={disableControls}
             />
         </div>
     );

@@ -18,7 +18,7 @@ const styles = {
         position: "relative",
         top: 0,
         left: 0,
-        backgroundColor: "yellow",
+        backgroundColor: "#284169",
         borderRadius: radius,
         overflow: "hidden",
     },
@@ -28,6 +28,8 @@ const styles = {
         height: radius * 2,
         top: 0,
         left: 0,
+        zIndex: 1,
+        backgroundColor: "#4068A8",
     },
     circle: {
         position: "absolute",
@@ -36,7 +38,7 @@ const styles = {
         width: radius * 1.8,
         height: radius * 1.8,
         borderRadius: radius / 0.9,
-        backgroundColor: "white",
+        backgroundColor: "#284169",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -44,7 +46,7 @@ const styles = {
     },
     timer: {
         fontSize: "50px",
-        color: "black",
+        color: "#4068A8",
     },
 };
 
@@ -66,8 +68,7 @@ const Timer = props => {
             <div
                 style={{
                     ...styles.filler,
-                    zIndex: 1,
-                    backgroundColor: "blue",
+
                     transform: `translateY(${percentage(
                         fullValue,
                         timerValue,
