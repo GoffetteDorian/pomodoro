@@ -39,9 +39,9 @@ const Controls = props => {
                     top: "50%",
                     right: "15%",
                     width: "80px",
-                    background: "#4068A8",
-                    border: "none",
-                    color: "#284169",
+                    background: "#B7948F",
+                    border: "solid 2px #A85C51",
+                    color: "#A85C51",
                 }}
                 as={"input"}
                 type={"button"}
@@ -55,10 +55,10 @@ const Controls = props => {
                     bottom: "20%",
                     left: "47%",
                     width: "68px",
-                    border: "solid 2px #4068A8",
-                    color: "#4068A8",
+                    background: "#B7948F",
+                    border: "solid 2px #A85C51",
+                    color: "#A85C51",
                 }}
-                variant={"outline"}
                 onClick={!running ? startTimer : pauseTimer}>
                 {!running ? <span>{"►"}</span> : <span>{"▌▌"}</span>}
             </Button>
@@ -68,9 +68,9 @@ const Controls = props => {
                     top: "20%",
                     left: "22.5%",
                     width: "80px",
-                    background: "#4068A8",
-                    border: "none",
-                    color: "#284169",
+                    background: "#B7948F",
+                    border: "solid 2px #A85C51",
+                    color: "#A85C51",
                 }}
                 as={"input"}
                 type={"button"}
@@ -83,9 +83,9 @@ const Controls = props => {
                     top: "50%",
                     left: "15%",
                     width: "80px",
-                    background: "#4068A8",
-                    border: "none",
-                    color: "#284169",
+                    background: "#B7948F",
+                    border: "solid 2px #A85C51",
+                    color: "#A85C51",
                 }}
                 as={"input"}
                 type={"button"}
@@ -99,9 +99,9 @@ const Controls = props => {
                     top: "20%",
                     right: "22.5%",
                     width: "80px",
-                    background: "#4068A8",
-                    border: "none",
-                    color: "#284169",
+                    background: "#B7948F",
+                    border: "solid 2px #A85C51",
+                    color: "#A85C51",
                 }}
                 as={"input"}
                 type={"button"}

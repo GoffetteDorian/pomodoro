@@ -124,7 +124,12 @@ const Pomodoro = () => {
                     color: "#284169",
                     border: "none",
                 }}>
-                <Card.Header style={{background: "#4068A8", width: "100%"}}>
+                <Card.Header
+                    style={{
+                        background: "#4068A8",
+                        width: "100%",
+                        color: "#B7948F",
+                    }}>
                     <Card.Title>
                         {timerKey === "work" ? "Work" : "Break"}
                     </Card.Title>

@@ -18,8 +18,10 @@ const styles = {
         position: "relative",
         top: 0,
         left: 0,
-        backgroundColor: "#284169",
+        background: "#8C726D",
+
         borderRadius: radius,
+        border: "2px solid #A85C51",
         overflow: "hidden",
     },
     filler: {
@@ -29,7 +31,7 @@ const styles = {
         top: 0,
         left: 0,
         zIndex: 1,
-        backgroundColor: "#4068A8",
+        backgroundColor: "#B7948F",
     },
     circle: {
         position: "absolute",
@@ -38,6 +40,7 @@ const styles = {
         width: radius * 1.8,
         height: radius * 1.8,
         borderRadius: radius / 0.9,
+        border: "2px solid #A85C51",
         backgroundColor: "#284169",
         display: "flex",
         justifyContent: "center",
@@ -46,7 +49,7 @@ const styles = {
     },
     timer: {
         fontSize: "50px",
-        color: "#4068A8",
+        color: "#A85C51",
     },
 };
 
