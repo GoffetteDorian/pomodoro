@@ -7,7 +7,7 @@
  */
 
 import React from "react";
-
+import PropTypes from "prop-types";
 import {Button} from "react-bootstrap";
 
 const Controls = props => {
@@ -111,6 +111,17 @@ const Controls = props => {
             />
         </div>
     );
+};
+
+Controls.propTypes = {
+    running: PropTypes.bool.isRequired,
+    startTimer: PropTypes.func.isRequired,
+    pauseTimer: PropTypes.func.isRequired,
+    incTimerValue: PropTypes.func.isRequired,
+    decTimerValue: PropTypes.func.isRequired,
+    resetTimerValue: PropTypes.func.isRequired,
+    changeTimerKey: PropTypes.func.isRequired,
+    disableControls: PropTypes.bool,
 };
 
 export default Controls;
