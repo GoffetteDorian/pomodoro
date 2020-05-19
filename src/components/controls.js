@@ -22,6 +22,16 @@ const Controls = props => {
         disableControls,
     } = props;
 
+    const styles = {
+        button: {
+            position: "absolute",
+            width: "80px",
+            background: "#B7948F",
+            border: "solid 2px #A85C51",
+            color: "#A85C51",
+        },
+    };
+
     return (
         <div
             style={{
@@ -35,13 +45,9 @@ const Controls = props => {
             }}>
             <Button
                 style={{
-                    position: "absolute",
+                    ...styles.button,
                     top: "50%",
                     right: "15%",
-                    width: "80px",
-                    background: "#B7948F",
-                    border: "solid 2px #A85C51",
-                    color: "#A85C51",
                 }}
                 as={"input"}
                 type={"button"}
@@ -51,26 +57,19 @@ const Controls = props => {
             />
             <Button
                 style={{
-                    position: "absolute",
+                    ...styles.button,
                     bottom: "20%",
                     left: "47%",
                     width: "68px",
-                    background: "#B7948F",
-                    border: "solid 2px #A85C51",
-                    color: "#A85C51",
                 }}
                 onClick={!running ? startTimer : pauseTimer}>
                 {!running ? <span>{"►"}</span> : <span>{"▌▌"}</span>}
             </Button>
             <Button
                 style={{
-                    position: "absolute",
+                    ...styles.button,
                     top: "20%",
                     left: "22.5%",
-                    width: "80px",
-                    background: "#B7948F",
-                    border: "solid 2px #A85C51",
-                    color: "#A85C51",
                 }}
                 as={"input"}
                 type={"button"}
@@ -79,13 +78,9 @@ const Controls = props => {
             />
             <Button
                 style={{
-                    position: "absolute",
+                    ...styles.button,
                     top: "50%",
                     left: "15%",
-                    width: "80px",
-                    background: "#B7948F",
-                    border: "solid 2px #A85C51",
-                    color: "#A85C51",
                 }}
                 as={"input"}
                 type={"button"}
@@ -95,13 +90,9 @@ const Controls = props => {
             />
             <Button
                 style={{
-                    position: "absolute",
+                    ...styles.button,
                     top: "20%",
                     right: "22.5%",
-                    width: "80px",
-                    background: "#B7948F",
-                    border: "solid 2px #A85C51",
-                    color: "#A85C51",
                 }}
                 as={"input"}
                 type={"button"}
