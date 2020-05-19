@@ -1,5 +1,5 @@
 # Pomodoro
 
-_TODO_
+Small pomodoro app using React
 
 ---
