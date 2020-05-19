@@ -9,7 +9,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const radius = 300;
+const radius = 250;
 
 const styles = {
     wrap: {
@@ -19,7 +19,6 @@ const styles = {
         top: 0,
         left: 0,
         background: "#8C726D",
-
         borderRadius: radius,
         border: "2px solid #A85C51",
         overflow: "hidden",
@@ -42,6 +41,7 @@ const styles = {
         borderRadius: radius / 0.9,
         border: "2px solid #A85C51",
         backgroundColor: "#284169",
+
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
